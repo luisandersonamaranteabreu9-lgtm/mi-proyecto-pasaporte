@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Departamento de Pasaportes — República Dominicana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --azul:       #002D62;
+      --azul-medio: #004F9F;
+      --azul-claro: #1A6FBF;
+      --rojo:       #CE1126;
+      --rojo-hover: #A80D1E;
+      --oro:        #C8A84B;
+      --blanco:     #FFFFFF;
+      --gris-claro: #F4F6FA;
+      --gris-texto: #4A5568;
+      --borde:      #D1DCF0;
+      --sombra:     0 4px 20px rgba(0,45,98,0.12);
+      --radio:      10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Source Sans 3', sans-serif; font-weight: 400; color: var(--azul); background: var(--gris-claro); }
+
+    nav {
+      background: var(--azul); padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+    .nav-logo .escudo {
+      width: 44px; height: 44px; background: var(--oro); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; font-weight: 700; color: var(--azul); flex-shrink: 0;
+    }
+    .nav-logo span { color: var(--blanco); font-family: 'Playfair Display', serif; font-size: 15px; line-height: 1.2; }
+    .nav-logo span small { display: block; font-family: 'Source Sans 3', sans-serif; font-size: 11px; font-weight: 300; color: var(--oro); letter-spacing: 1px; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 6px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 13.5px; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: all .2s; letter-spacing: .3px; }
+    .nav-links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
+    .nav-btn-login { background: var(--rojo) !important; color: #fff !important; padding: 6px 18px !important; }
+    .nav-btn-login:hover { background: var(--rojo-hover) !important; }
+
+    #hero {
+      background: linear-gradient(135deg, rgba(0,45,98,0.92) 0%, rgba(0,79,159,0.80) 60%, rgba(206,17,38,0.15) 100%),
+        url('https://mirex.gob.do/wp-content/uploads/2022/04/Flag_of_the_Dominican_Republic.svg') center/cover no-repeat;
+      min-height: 480px; display: flex; align-items: center; padding: 80px 40px 60px;
+    }
+    .hero-inner { max-width: 680px; }
+    .hero-badge { display: inline-block; background: var(--oro); color: var(--azul); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 22px; }
+    .hero-inner h1 { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--blanco); line-height: 1.18; margin-bottom: 18px; }
+    .hero-inner h1 span { color: var(--oro); }
+    .hero-inner p { color: rgba(255,255,255,0.85); font-size: 16.5px; font-weight: 300; line-height: 1.7; margin-bottom: 32px; max-width: 520px; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary { background: var(--rojo); color: #fff; border: none; padding: 13px 28px; border-radius: var(--radio); font-size: 15px; font-weight: 600; cursor: pointer; text-decoration: none; transition: background .2s, transform .15s; display: inline-block; }
+    .btn-primary:hover { background: var(--rojo-hover); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.55); padding: 11px 28px; border-radius: var(--radio); font-size: 15px; font-weight: 500; cursor: pointer; text-decoration: none; transition: border-color .2s, background .2s; display: inline-block; }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    #proceso { background: var(--blanco); padding: 72px 40px; }
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--rojo); display: block; margin-bottom: 10px; }
+    .section-header h2 { font-family: 'Playfair Display', serif; font-size: 30px; color: var(--azul); }
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; max-width: 900px; margin: 0 auto; }
+    .step-card { background: var(--gris-claro); border: 1px solid var(--borde); border-radius: var(--radio); padding: 28px 22px; text-align: center; position: relative; transition: box-shadow .2s, transform .2s; }
+    .step-card:hover { box-shadow: var(--sombra); transform: translateY(-3px); }
+    .step-num { width: 44px; height: 44px; background: var(--azul); color: #fff; border-radius: 50%; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .step-card h3 { font-size: 15.5px; font-weight: 600; color: var(--azul); margin-bottom: 8px; }
+    .step-card p { font-size: 13.5px; color: var(--gris-texto); line-height: 1.55; }
+
+    #requisitos { background: var(--azul); padding: 72px 40px; }
+    #requisitos .section-header h2 { color: var(--blanco); }
+    #requisitos .section-label { color: var(--oro); }
+    .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+    .req-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); border-left: 4px solid var(--oro); border-radius: var(--radio); padding: 20px 22px; display: flex; align-items: flex-start; gap: 14px; }
+    .req-icon { font-size: 22px; flex-shrink: 0; }
+    .req-item h4 { font-size: 14.5px; font-weight: 600; color: var(--blanco); margin-bottom: 4px; }
+    .req-item p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.45; }
+
+    #formularios { padding: 72px 40px; background: var(--gris-claro); }
+    .tabs-wrap { max-width: 520px; margin: 0 auto; }
+    .tabs { display: flex; border-radius: var(--radio) var(--radio) 0 0; overflow: hidden; border: 1px solid var(--borde); border-bottom: none; }
+    .tab-btn { flex: 1; padding: 14px; background: var(--blanco); border: none; font-family: 'Source Sans 3', sans-serif; font-size: 14.5px; font-weight: 600; color: var(--gris-texto); cursor: pointer; transition: background .2s, color .2s; letter-spacing: .3px; }
+    .tab-btn.active { background: var(--azul); color: var(--blanco); }
+    .form-card { background: var(--blanco); border: 1px solid var(--borde); border-radius: 0 0 var(--radio) var(--radio); padding: 36px 36px 32px; box-shadow: var(--sombra); }
+    .form-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--azul); margin-bottom: 6px; }
+    .form-card .sub { font-size: 13px; color: var(--gris-texto); margin-bottom: 26px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--azul); margin-bottom: 6px; letter-spacing: .2px; }
+    .form-group label span { color: var(--rojo); }
+    .form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 1.5px solid var(--borde); border-radius: 8px; font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: var(--azul); background: var(--blanco); outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--azul-claro); box-shadow: 0 0 0 3px rgba(26,111,191,0.12); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-submit { width: 100%; background: var(--azul); color: #fff; border: none; padding: 13px; border-radius: 8px; font-family: 'Source Sans 3', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: background .2s, transform .15s; letter-spacing: .3px; }
+    .form-submit:hover { background: var(--azul-claro); transform: translateY(-1px); }
+    .form-submit:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+    .form-divider { text-align: center; margin: 14px 0 0; font-size: 13px; color: var(--gris-texto); }
+    .form-divider a { color: var(--rojo); text-decoration: none; font-weight: 600; }
+    .form-divider a:hover { text-decoration: underline; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Mensajes de estado */
+    .msg { display: none; border-radius: 8px; padding: 14px 18px; margin-top: 14px; font-size: 13.5px; font-weight: 500; }
+    .msg-success { background: #d4edda; border: 1px solid #28a745; color: #155724; }
+    .msg-error   { background: #f8d7da; border: 1px solid #dc3545; color: #721c24; }
+    .msg-loading { background: #cce5ff; border: 1px solid #004085; color: #004085; }
+
+    footer { background: var(--azul); border-top: 4px solid var(--rojo); padding: 50px 40px 28px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; max-width: 900px; margin: 0 auto 36px; }
+    .footer-brand p { color: rgba(255,255,255,0.65); font-size: 13px; line-height: 1.65; margin-top: 12px; max-width: 280px; }
+    .footer-brand .brand-name { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--blanco); }
+    .footer-col h4 { color: var(--oro); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 9px; }
+    .footer-col ul li a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13.5px; transition: color .2s; }
+    .footer-col ul li a:hover { color: var(--blanco); }
+    .footer-contact p { color: rgba(255,255,255,0.7); font-size: 13px; line-height: 1.8; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; text-align: center; color: rgba(255,255,255,0.4); font-size: 12px; max-width: 900px; margin: 0 auto; }
+
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero-inner h1 { font-size: 28px; }
+      #hero, #proceso, #requisitos, #formularios, footer { padding: 48px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .form-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="escudo">🛡</div>
+    <span>Dpto. de Pasaportes<small>República Dominicana</small></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#requisitos">Requisitos</a></li>
+    <li><a href="#formularios">Solicitud</a></li>
+    <li><a href="#formularios" class="nav-btn-login">Iniciar Sesión</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">🇩🇴 Gobierno de la República Dominicana</span>
+    <h1>Tu <span>Pasaporte</span><br>en Simples Pasos</h1>
+    <p>Solicita, renueva o consulta tu pasaporte dominicano de manera ágil, segura y completamente digital desde cualquier lugar.</p>
+    <div class="hero-btns">
+      <a href="#formularios" class="btn-primary">Iniciar Solicitud</a>
+      <a href="#proceso" class="btn-outline">Conocer el Proceso</a>
+    </div>
+  </div>
+</section>
+
+<section id="proceso">
+  <div class="section-header">
+    <span class="section-label">¿Cómo funciona?</span>
+    <h2>Proceso de Solicitud</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-num">1</div><h3>Crea tu Cuenta</h3><p>Regístrate con tu cédula y correo electrónico para acceder al portal.</p></div>
+    <div class="step-card"><div class="step-num">2</div><h3>Llena el Formulario</h3><p>Completa tus datos personales y carga los documentos requeridos.</p></div>
+    <div class="step-card"><div class="step-num">3</div><h3>Paga la Tasa</h3><p>Realiza el pago correspondiente según el tipo de pasaporte solicitado.</p></div>
+    <div class="step-card"><div class="step-num">4</div><h3>Recoge tu Pasaporte</h3><p>Acude a la oficina indicada en la fecha asignada con tu confirmación.</p></div>
+  </div>
+</section>
+
+<section id="requisitos">
+  <div class="section-header">
+    <span class="section-label">Documentación</span>
+    <h2>Requisitos Necesarios</h2>
+  </div>
+  <div class="req-grid">
+    <div class="req-item"><span class="req-icon">🪪</span><div><h4>Cédula de Identidad</h4><p>Original y fotocopia legible de tu cédula dominicana vigente.</p></div></div>
+    <div class="req-item"><span class="req-icon">📜</span><div><h4>Acta de Nacimiento</h4><p>Acta de nacimiento original (máximo 1 año de expedida).</p></div></div>
+    <div class="req-item"><span class="req-icon">📄</span><div><h4>Documento Solicitado</h4><p>Formulario de solicitud completado y firmado ante notario.</p></div></div>
+    <div class="req-item"><span class="req-icon">🏠</span><div><h4>Comprobante de Localidad</h4><p>Recibo de servicios públicos o carta de residencia del municipio.</p></div></div>
+    <div class="req-item"><span class="req-icon">💳</span><div><h4>Pago de Tasas</h4><p>Recibo de pago de tasas correspondiente al tipo de pasaporte.</p></div></div>
+    <div class="req-item"><span class="req-icon">📸</span><div><h4>Fotografías Recientes</h4><p>2 fotos tamaño pasaporte con fondo blanco, a color y recientes.</p></div></div>
+  </div>
+</section>
+
+<section id="formularios">
+  <div class="section-header">
+    <span class="section-label">Portal Ciudadano</span>
+    <h2>Acceso y Solicitud</h2>
+  </div>
+  <div class="tabs-wrap">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('login')">Iniciar Sesión</button>
+      <button class="tab-btn" onclick="switchTab('registro')">Registrarse</button>
+      <button class="tab-btn" onclick="switchTab('solicitud')">Nueva Solicitud</button>
+    </div>
+    <div class="form-card">
+
+      <!-- LOGIN -->
+      <div id="tab-login" class="tab-panel active">
+        <h3>Bienvenido de vuelta</h3>
+        <p class="sub">Ingresa tus credenciales para continuar.</p>
+        <form id="form-login" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>Cédula <span>*</span></label>
+            <input type="text" id="login-cedula" placeholder="000-0000000-0" maxlength="13" required />
+          </div>
+          <div class="form-group">
+            <label>Contraseña <span>*</span></label>
+            <input type="password" id="login-pass" placeholder="••••••••" required />
+          </div>
+          <button type="submit" class="form-submit" id="btn-login">Iniciar Sesión</button>
+          <div id="msg-login" class="msg"></div>
+          <p class="form-divider">¿No tienes cuenta? <a href="#" onclick="switchTab('registro')">Regístrate aquí</a></p>
+        </form>
+      </div>
+
+      <!-- REGISTRO -->
+      <div id="tab-registro" class="tab-panel">
+        <h3>Crear Cuenta</h3>
+        <p class="sub">Completa tus datos para registrarte en el portal.</p>
+        <form id="form-registro" onsubmit="handleRegistro(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre <span>*</span></label>
+              <input type="text" id="reg-nombre" placeholder="Nombre" required />
+            </div>
+            <div class="form-group">
+              <label>Apellido <span>*</span></label>
+              <input type="text" id="reg-apellido" placeholder="Apellido" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Cédula <span>*</span></label>
+            <input type="text" id="reg-cedula" placeholder="000-0000000-0" maxlength="13" required />
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico <span>*</span></label>
+            <input type="email" id="reg-email" placeholder="correo@ejemplo.com" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Contraseña <span>*</span></label>
+              <input type="password" id="reg-pass" placeholder="••••••••" required />
+            </div>
+            <div class="form-group">
+              <label>Confirmar <span>*</span></label>
+              <input type="password" id="reg-pass2" placeholder="••••••••" required />
+            </div>
+          </div>
+          <button type="submit" class="form-submit" id="btn-registro">Crear Cuenta</button>
+          <div id="msg-registro" class="msg"></div>
+          <p class="form-divider">¿Ya tienes cuenta? <a href="#" onclick="switchTab('login')">Inicia sesión</a></p>
+        </form>
+      </div>
+
+      <!-- SOLICITUD -->
+      <div id="tab-solicitud" class="tab-panel">
+        <h3>Nueva Solicitud</h3>
+        <p class="sub">Completa todos los campos requeridos correctamente.</p>
+        <form id="form-solicitud" onsubmit="handleSolicitud(event)">
+          <div class="form-group">
+            <label>Tipo de Documento Solicitado <span>*</span></label>
+            <select id="sol-tipo" required>
+              <option value="">— Seleccionar —</option>
+              <option value="nuevo">Pasaporte Nuevo</option>
+              <option value="renovacion">Renovación</option>
+              <option value="urgente">Pasaporte Urgente</option>
+              <option value="menor">Pasaporte Menor de Edad</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre Completo <span>*</span></label>
+              <input type="text" id="sol-nombre" placeholder="Nombre completo" required />
+            </div>
+            <div class="form-group">
+              <label>Cédula <span>*</span></label>
+              <input type="text" id="sol-cedula" placeholder="000-0000000-0" maxlength="13" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>No. Acta de Nacimiento <span>*</span></label>
+            <input type="text" id="sol-acta" placeholder="Número de acta" required />
+          </div>
+          <div class="form-group">
+            <label>Provincia / Municipio <span>*</span></label>
+            <select id="sol-localidad" required>
+              <option value="">— Seleccionar provincia —</option>
+              <option>Santo Domingo</option>
+              <option>Santiago</option>
+              <option>La Romana</option>
+              <option>San Pedro de Macorís</option>
+              <option>Puerto Plata</option>
+              <option>La Vega</option>
+              <option>Azua</option>
+              <option>Barahona</option>
+              <option>Pedernales</option>
+              <option>Otra</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Correo de Contacto <span>*</span></label>
+            <input type="email" id="sol-email" placeholder="correo@ejemplo.com" required />
+          </div>
+          <div class="form-group">
+            <label>Teléfono de Contacto <span>*</span></label>
+            <input type="tel" id="sol-telefono" placeholder="(809) 000-0000" required />
+          </div>
+          <button type="submit" class="form-submit" id="btn-solicitud">Enviar Solicitud</button>
+          <div id="msg-solicitud" class="msg"></div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="brand-name">Departamento de Pasaportes</span>
+      <p>Servicio oficial del Gobierno de la República Dominicana. Comprometidos con la seguridad, eficiencia y bienestar de nuestros ciudadanos.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#requisitos">Requisitos</a></li>
+        <li><a href="#formularios">Solicitud</a></li>
+        <li><a href="#formularios">Iniciar Sesión</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contacto</h4>
+      <p>📞 (809) 000-0000<br>📧 pasaportes@gob.do<br>📍 Santo Domingo, D.N.<br>🕐 Lun–Vie: 8:00am – 4:00pm</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 República Dominicana — Departamento de Pasaportes. Todos los derechos reservados.</div>
+</footer>
+
+<!-- =====================================================
+     FIREBASE SDK (versión 9 modular via CDN compat)
+====================================================== -->
+<script type="module">
+  // ============================================================
+  // 🔥 PASO 1: PON AQUÍ TU CONFIGURACIÓN DE FIREBASE
+  //    Ve a: console.firebase.google.com → Tu proyecto
+  //    → Configuración ⚙️ → Configuración del SDK
+  // ============================================================
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getDatabase, ref, push, set, get, child
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAf2z58Dwx87HA7gNP2NBUBcrfvpJN0QD4",
+    authDomain: "pasaportes-rd.firebaseapp.com",
+    projectId: "pasaportes-rd",
+    storageBucket: "pasaportes-rd.firebasestorage.app",
+    messagingSenderId: "209655642798",
+    appId: "1:209655642798:web:5071f5906127af249a0b3f",
+    measurementId: "G-6C5MG95MQQ"
+  };
+
+  // Inicializar Firebase
+  const app  = initializeApp(firebaseConfig);
+  const db   = getDatabase(app);
+  const auth = getAuth(app);
+
+  // ============================================================
+  // UTILIDADES UI
+  // ============================================================
+  function showMsg(id, tipo, texto) {
+    const el = document.getElementById(id);
+    el.className = `msg msg-${tipo}`;
+    el.textContent = texto;
+    el.style.display = 'block';
+    if (tipo === 'success') setTimeout(() => el.style.display = 'none', 5000);
+  }
+  function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    btn.disabled = loading;
+    btn.textContent = loading ? 'Procesando...' : btn.dataset.original;
+  }
+
+  // Guardar textos originales de los botones
+  document.addEventListener('DOMContentLoaded', () => {
+    ['btn-login','btn-registro','btn-solicitud'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.dataset.original = el.textContent;
+    });
+  });
+
+  // ============================================================
+  // LOGIN — Firebase Authentication
+  // ============================================================
+  window.handleLogin = async function(e) {
+    e.preventDefault();
+    const cedula = document.getElementById('login-cedula').value.trim();
+    const pass   = document.getElementById('login-pass').value;
+
+    // Construimos un email ficticio con la cédula para usar Firebase Auth
+    const email = `${cedula.replace(/-/g,'')}@pasaportes.gob.do`;
+
+    setLoading('btn-login', true);
+    showMsg('msg-login', 'loading', '⏳ Verificando credenciales...');
+
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, pass);
+      showMsg('msg-login', 'success', '✅ ¡Sesión iniciada correctamente! Bienvenido.');
+      document.getElementById('form-login').reset();
+
+      // Registrar el intento de login en la base de datos
+      await push(ref(db, 'logs/login'), {
+        cedula,
+        uid: userCred.user.uid,
+        timestamp: new Date().toISOString()
+      });
+    } catch (err) {
+      const msgs = {
+        'auth/user-not-found':  '❌ Cédula no registrada. ¿Tienes cuenta?',
+        'auth/wrong-password':  '❌ Contraseña incorrecta. Intenta de nuevo.',
+        'auth/invalid-email':   '❌ Formato de cédula inválido.',
+        'auth/too-many-requests': '⚠️ Demasiados intentos. Espera unos minutos.'
+      };
+      showMsg('msg-login', 'error', msgs[err.code] || `❌ Error: ${err.message}`);
+    } finally {
+      setLoading('btn-login', false);
+    }
+  };
+
+  // ============================================================
+  // REGISTRO — Firebase Auth + Realtime Database
+  // ============================================================
+  window.handleRegistro = async function(e) {
+    e.preventDefault();
+    const nombre   = document.getElementById('reg-nombre').value.trim();
+    const apellido = document.getElementById('reg-apellido').value.trim();
+    const cedula   = document.getElementById('reg-cedula').value.trim();
+    const emailVal = document.getElementById('reg-email').value.trim();
+    const pass     = document.getElementById('reg-pass').value;
+    const pass2    = document.getElementById('reg-pass2').value;
+
+    if (pass !== pass2) {
+      showMsg('msg-registro', 'error', '⚠️ Las contraseñas no coinciden.');
+      return;
+    }
+    if (pass.length < 6) {
+      showMsg('msg-registro', 'error', '⚠️ La contraseña debe tener al menos 6 caracteres.');
+      return;
+    }
+
+    // Email ficticio basado en la cédula para Firebase Auth
+    const emailAuth = `${cedula.replace(/-/g,'')}@pasaportes.gob.do`;
+
+    setLoading('btn-registro', true);
+    showMsg('msg-registro', 'loading', '⏳ Creando tu cuenta...');
+
+    try {
+      // 1. Crear usuario en Firebase Authentication
+      const userCred = await createUserWithEmailAndPassword(auth, emailAuth, pass);
+      const uid = userCred.user.uid;
+
+      // 2. Guardar datos del usuario en Realtime Database
+      await set(ref(db, `usuarios/${uid}`), {
+        nombre,
+        apellido,
+        cedula,
+        email: emailVal,
+        estado: 'activo',
+        fechaRegistro: new Date().toISOString()
+      });
+
+      showMsg('msg-registro', 'success', '✅ ¡Cuenta creada exitosamente! Ya puedes iniciar sesión.');
+      document.getElementById('form-registro').reset();
+    } catch (err) {
+      const msgs = {
+        'auth/email-already-in-use': '❌ Esta cédula ya tiene una cuenta registrada.',
+        'auth/weak-password':        '❌ Contraseña muy débil. Usa al menos 6 caracteres.',
+        'auth/invalid-email':        '❌ Formato de cédula inválido.'
+      };
+      showMsg('msg-registro', 'error', msgs[err.code] || `❌ Error: ${err.message}`);
+    } finally {
+      setLoading('btn-registro', false);
+    }
+  };
+
+  // ============================================================
+  // SOLICITUD — Guardar en Realtime Database
+  // ============================================================
+  window.handleSolicitud = async function(e) {
+    e.preventDefault();
+
+    const datos = {
+      tipoDocumento: document.getElementById('sol-tipo').value,
+      nombre:        document.getElementById('sol-nombre').value.trim(),
+      cedula:        document.getElementById('sol-cedula').value.trim(),
+      acta:          document.getElementById('sol-acta').value.trim(),
+      localidad:     document.getElementById('sol-localidad').value,
+      email:         document.getElementById('sol-email').value.trim(),
+      telefono:      document.getElementById('sol-telefono').value.trim(),
+      estado:        'pendiente',
+      timestamp:     new Date().toISOString()
+    };
+
+    setLoading('btn-solicitud', true);
+    showMsg('msg-solicitud', 'loading', '⏳ Enviando tu solicitud...');
+
+    try {
+      // Guardar en Firebase bajo la ruta: solicitudes/<id_auto>
+      const nuevaRef = await push(ref(db, 'solicitudes'), datos);
+
+      showMsg('msg-solicitud', 'success',
+        `✅ ¡Solicitud enviada! Tu número de referencia es: ${nuevaRef.key}`
+      );
+      document.getElementById('form-solicitud').reset();
+    } catch (err) {
+      showMsg('msg-solicitud', 'error', `❌ Error al enviar: ${err.message}`);
+    } finally {
+      setLoading('btn-solicitud', false);
+    }
+  };
+
+  // ============================================================
+  // TABS (accesible desde módulo)
+  // ============================================================
+  window.switchTab = function(tab) {
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', ['login','registro','solicitud'][i] === tab);
+    });
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+  };
+
+</script>
+
+</body>
+</html>
